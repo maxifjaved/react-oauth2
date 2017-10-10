@@ -2,26 +2,26 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import keys from 'object-keys';
-import './Facebook.scss';
-import { facebookLogin } from '../../actions/oauth';
+import './Google.scss';
+import { googleLogin } from '../../actions/oauth';
 
 
-let Facebook = createReactClass({
+let Google = createReactClass({
     getDefaultProps: function () {
         return {
             url: 'http://localhost:3000/',
             clientId: '',
             clientSecret: '',
             redirectUri: 'http://localhost:3000/',
-            authorizationUrl: 'https://www.facebook.com/v2.5/dialog/oauth',
-            scope: 'id,name,gender,email,location',
+            authorizationUrl: 'https://accounts.google.com/o/oauth2/auth',
+            scope: 'openid profile email',
             width: 580,
             height: 400
         };
     },
 
     handleClick: function () {
-        facebookLogin(this.props).then(res => {
+        googleLogin(this.props).then(res => {
             this.props.callback(null, res);
         }, error => {
             this.props.callback(error, null);
@@ -39,7 +39,7 @@ let Facebook = createReactClass({
     }
 })
 
-Facebook.propTypes = {
+Google.propTypes = {
     url: PropTypes.string.isRequired,
     redirectUri: PropTypes.string.isRequired,
     clientId: PropTypes.string.isRequired,
@@ -48,4 +48,4 @@ Facebook.propTypes = {
     callback: PropTypes.func.isRequired
 };
 
-export default Facebook;
+export default Google;

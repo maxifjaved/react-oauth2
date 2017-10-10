@@ -3,10 +3,12 @@
 ## Install
 ```
 npm install react-oauth2
+```
 
 ## Facebook
-## How to use
-```js
+
+### How to use
+```
 import React from 'react';
 import createReactClass from 'create-react-class';
 import Facebook from 'react-oauth2';
@@ -63,5 +65,7 @@ let App = createReactClass({
 | style | object | React Style Object | |
 |className | string | null
 
-## Google 
+## Google
+
+
 ## Twitter
