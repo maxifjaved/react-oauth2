@@ -32,8 +32,8 @@ class App extends React.Component {
     render() {
         return <div>
             <Facebook url={'http://localhost:3000/'}
-                clientId={'738536629629890'}
-                clientSecret={'cd1b9ecdd9e0b4dd6c2da83cd485ed56'}
+                clientId={''}
+                clientSecret={''}
                 redirectUri={'http://localhost:3000/'}
                 authorizationUrl={'https://www.facebook.com/v2.5/dialog/oauth'}
                 scope={'email,user_location'}
