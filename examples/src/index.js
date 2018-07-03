@@ -4,4 +4,5 @@ import MyComponent from '../../src';
 const App = () => (
     <MyComponent />
 );
+
 render(<App />, document.getElementById("root"));
