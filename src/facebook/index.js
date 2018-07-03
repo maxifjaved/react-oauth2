@@ -38,10 +38,6 @@ Facebook.propTypes = {
 };
 
 Facebook.defaultProps = {
-    url: 'http://localhost:3000/',
-    redirectUri: 'http://localhost:3000/',
-    clientId: '',
-    clientSecret: '',
     scope: 'id,name,gender,email,location',
     authorizationUrl: 'https://www.facebook.com/v2.5/dialog/oauth',
     width: 580,

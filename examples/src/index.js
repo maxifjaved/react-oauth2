@@ -31,10 +31,10 @@ class App extends React.Component {
 
     render() {
         return <div>
-            <Facebook url={'http://localhost:3000/'}
-                clientId={''}
-                clientSecret={''}
-                redirectUri={'http://localhost:3000/'}
+            <Facebook url={'https://maxifjaved.github.io/react-oauth2/'}
+                clientId={'468806966881566'}
+                clientSecret={'b2226e287fca3fa4259161630666002a'}
+                redirectUri={'https://maxifjaved.github.io/react-oauth2/'}
                 authorizationUrl={'https://www.facebook.com/v2.5/dialog/oauth'}
                 scope={'email,user_location'}
                 width={300}
