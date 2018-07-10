@@ -20,6 +20,15 @@ let Google = createReactClass({
         };
     },
 
+    getAttributesForButton: function () {
+        return keys(this.props).reduce((acc, prop) => {
+            if (['style', 'className'].some(wantedProp => wantedProp === prop)) {
+                acc[prop] = this.props[prop];
+            }
+            return acc;
+        }, {});
+    },
+
     handleClick: function () {
         googleLogin(this.props).then(res => {
             this.props.callback(null, res);
@@ -29,13 +38,8 @@ let Google = createReactClass({
     },
 
     render: function () {
-        const opts = keys(this.props).reduce((acc, prop) => {
-            if (['style', 'className'].some(wantedProp => wantedProp === prop)) {
-                acc[prop] = this.props[prop];
-            }
-            return acc;
-        }, {});
-        return <button {...opts} onClick={this.handleClick} >{this.props.children} </button>
+        const buttonAttrs = this.getAttributesForButton();
+        return <button {...buttonAttrs} onClick={this.handleClick} >{this.props.children} </button>
     }
 })
 
