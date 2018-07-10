@@ -22,7 +22,7 @@ let Google = createReactClass({
 
     getAttributesForButton: function () {
         return keys(this.props).reduce((acc, prop) => {
-            if (['style', 'className'].some(wantedProp => wantedProp === prop)) {
+            if (['style', 'className', 'disabled'].some(wantedProp => wantedProp === prop)) {
                 acc[prop] = this.props[prop];
             }
             return acc;
