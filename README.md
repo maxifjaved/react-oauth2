@@ -64,6 +64,7 @@ let App = createReactClass({
 |height | number | 300 | width of the window that open for authentication |
 | style | object | React Style Object | |
 |className | string | null
+| disabled | boolean | null
 
 ## Google
 
@@ -125,6 +126,7 @@ let App = createReactClass({
 |height | number | 300 | width of the window that open for authentication |
 | style | object | React Style Object | |
 |className | string | null
+| disabled | boolean | null
 
 
 ## Twitter
