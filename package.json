@@ -1,6 +1,6 @@
 {
   "name": "react-oauth2",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A social oAUth Sign-in / Log-in Component for React. You can login via Facebook, Google, Twitter",
   "main": "build/index.js",
   "scripts": {
