@@ -74,7 +74,7 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import { Google } from 'react-oauth2';
 
-let App = createReactClass({
+let GoogleComponent = createReactClass({
   getInitialState: function () {
     return {
       "data": {
@@ -94,11 +94,11 @@ let App = createReactClass({
   render: function () {
     return <div>
       <Google
-        url={'http://localhost:3000/'}
+        url={'http://localhost:3000'}
         clientId={''}
         clientSecret={''}
-        redirectUri={'http://localhost:3000/'}
-        scope={'email,user_location'}
+        redirectUri={'http://localhost:3000'}
+        scope={['https://www.googleapis.com/auth/userinfo.email']}
         width={300}
         height={300}
         callback={this.google}
@@ -111,6 +111,8 @@ let App = createReactClass({
     </div>
   }
 });
+
+export default GoogleComponent;
 ```
 
 ## Parameters
@@ -119,7 +121,7 @@ let App = createReactClass({
 |:------------:|:--------:|:------------------------------------:|:----------------:|
 |    clientId  |  string  |               REQUIRED               |                  |
 | clientSecret |  string  |               REQUIRED               |                  |
-|     scope    |  string  |             name, id, location, email            |                  |
+|     scope    |  array   |               REQUIRED               |                  |
 |   redirectUri | string  | http://localhost:3000 | |
 | url | string|http://localhost:3000 | |
 | width | number | 300 | width of the window that open for authentication |
