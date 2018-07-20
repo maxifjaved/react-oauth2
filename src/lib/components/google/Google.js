@@ -14,7 +14,7 @@ let Google = createReactClass({
             clientSecret: '',
             redirectUri: 'http://localhost:3000/',
             authorizationUrl: 'https://accounts.google.com/o/oauth2/auth',
-            scope: 'openid profile email',
+            scope: [''],
             width: 580,
             height: 400
         };
@@ -48,7 +48,7 @@ Google.propTypes = {
     redirectUri: PropTypes.string.isRequired,
     clientId: PropTypes.string.isRequired,
     clientSecret: PropTypes.string.isRequired,
-    scope: PropTypes.string,
+    scope: PropTypes.array.isRequired,
     callback: PropTypes.func.isRequired
 };
 

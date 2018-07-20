@@ -55,31 +55,40 @@ export function googleLogin(google) {
 
 function exchangeCodeForToken({ oauthData, config, window, interval, dispatch }) {
     return new Promise((resolve, reject) => {
-      const data = Object.assign({}, oauthData, config);
-  
-      return fetch(config.url, {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'same-origin', // By default, fetch won't send any cookies to the server
-        body: JSON.stringify(data)
-      }).then((response) => {
-        if (response.ok) {
-          return response.json().then((json) => {
-            resolve({ token: json.token, user: json.user, window: window, interval: interval, dispatch: dispatch });
-          });
-        } else {
-          return response.json().then((json) => {
-            dispatch({
-              type: 'OAUTH_FAILURE',
-              messages: Array.isArray(json) ? json : [json]
+        const data = Object.assign({}, oauthData, config);
+
+        var accessTokenUrl = 'https://www.googleapis.com/oauth2/v3/token';
+        var peopleApiUrl = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect';
+
+        var params = {
+            code: data.code,
+            client_id: data.clientId,
+            client_secret: data.clientSecret,
+            redirect_uri: data.redirectUri,
+            grant_type: 'authorization_code'
+        };
+
+        // Step 1. Exchange authorization code for access token.
+        request.post({ url: accessTokenUrl, form: params, json: true }, function (err, response, token) {
+            if (!token) {
+                reject({ response });
+            }
+
+            var accessToken = token.access_token;
+            var headers = { Authorization: 'Bearer ' + accessToken };
+
+            // Step 2. Retrieve user's profile information.
+            request.get({ url: peopleApiUrl, headers: headers, json: true }, function (err, response, profile) {
+                if (profile.error) {
+                    reject({ response });
+                }
+
+                resolve({ window: window, interval: interval, profile: profile });
             });
-            closePopup({ window: window, interval: interval });
-          });
-        }
-      });
+        });
     });
-  }
-  
+}
+
 function signIn({ token, user, window, interval, profile }) {
     return new Promise((resolve, reject) => {
         resolve({ window: window, interval: interval, profile });
@@ -95,4 +104,3 @@ function closePopup({ window, interval, profile }) {
         resolve({ profile: profile });
     });
 }
-
