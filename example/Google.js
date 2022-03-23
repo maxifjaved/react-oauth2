@@ -1,8 +1,8 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import Facebook from '../lib';
+import { Google } from '../dist';
 
-let FacebookComponent = createReactClass({
+let GoogleComponent = createReactClass({
   getInitialState: function () {
     return {
       "data": {
@@ -11,7 +11,7 @@ let FacebookComponent = createReactClass({
     };
   },
 
-  facebook: function (err, res) {
+  google: function (err, res) {
     if (!err) {
       this.setState({ data: res.profile })
     } else {
@@ -21,23 +21,23 @@ let FacebookComponent = createReactClass({
 
   render: function () {
     return <div>
-      <Facebook url={'http://localhost:3000/'}
-        clientId={''}
-        clientSecret={''}
-        redirectUri={'http://localhost:3000/'}
-        authorizationUrl={'https://www.facebook.com/v2.5/dialog/oauth'}
-        scope={'email,user_location'}
+      <Google
+        url={'http://localhost:3000'}
+        clientId={'575268215328-e3kffueqpfhho3m57b4quq8dbe907g7r.apps.googleusercontent.com'}
+        clientSecret={'fW2w15epMMo5IqMTqdJGENMK'}
+        redirectUri={'http://localhost:3000'}
+        scope={['https://www.googleapis.com/auth/userinfo.email']}
         width={300}
         height={300}
-        callback={this.facebook}
+        callback={this.google}
         style={{ color: 'green' }}
       >
-        Login With Facebook From component
-  </Facebook>
+        Login With Google From component
+  </Google>
       <hr />
       {JSON.stringify(this.state)}
     </div>
   }
 });
 
-export default FacebookComponent;
+export default GoogleComponent;
