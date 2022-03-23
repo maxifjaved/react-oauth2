@@ -1,1 +1,0 @@
-{"version":3,"file":"v2-react-oauth2.cjs.development.js","sources":["../src/index.tsx"],"sourcesContent":["import * as React from 'react';\n\n// Delete me\nexport const Thing = () => {\n  return <div>the snozzberries taste like snozzberries</div>;\n};\n"],"names":["Thing","React"],"mappings":";;;;;;IAGaA,KAAK,GAAG,SAARA,KAAQ;AACnB,SAAOC,mBAAA,MAAA,MAAA,4CAAA,CAAP;AACD;;;;"}

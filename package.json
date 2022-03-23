@@ -2,7 +2,7 @@
   "name": "react-oauth2",
   "version": "1.1.2",
   "description": "A social oAUth Sign-in / Log-in Component for React. You can login via Facebook, Google, Twitter",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
@@ -21,7 +21,7 @@
     "analyze": "size-limit --why"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=17.0.2"
   },
   "repository": {
     "type": "git",
@@ -57,8 +57,11 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.8",
+    "@types/create-react-class": "^15.6.3",
+    "@types/object-keys": "^1.0.1",
     "@types/react": "^17.0.42",
     "@types/react-dom": "^17.0.14",
+    "@types/request": "^2.48.8",
     "husky": "^7.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -68,10 +71,12 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "moment": "^2.18.1",
-    "object-keys": "^1.0.11",
-    "querystring": "^0.2.0",
-    "request": "^2.83.0",
+    "axios": "^0.26.1",
+    "create-react-class": "^15.7.0",
+    "moment": "^2.29.1",
+    "object-keys": "^1.1.1",
+    "query-string": "^7.1.1",
+    "request": "^2.88.2",
     "url": "^0.11.0"
   }
 }
