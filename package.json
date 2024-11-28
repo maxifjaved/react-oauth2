@@ -1,120 +1,60 @@
 {
-  "name": "react-oauth2",
-  "version": "1.1.2",
-  "description": "A social oAUth Sign-in / Log-in Component for React. You can login via Facebook, Google, Twitter",
-  "main": "build/index.js",
-  "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maxifjaved/react-oauth2.git"
-  },
-  "author": "Muhammad Asif Javed <axif.javed@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/maxifjaved/react-oauth2/issues"
-  },
-  "homepage": "https://github.com/maxifjaved/react-oauth2#readme",
+  "version": "2.0.0",
   "license": "MIT",
-  "devDependencies": {
-    "autoprefixer": "7.1.2",
-    "babel-cli": "^6.26.0",
-    "babel-core": "6.25.0",
-    "babel-eslint": "7.2.3",
-    "babel-jest": "20.0.3",
-    "babel-loader": "7.1.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-react-app": "^3.0.2",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-runtime": "6.23.0",
-    "case-sensitive-paths-webpack-plugin": "2.1.1",
-    "chalk": "1.1.3",
-    "css-loader": "0.28.4",
-    "dotenv": "4.0.0",
-    "eslint": "4.4.1",
-    "eslint-config-react-app": "^2.0.0",
-    "eslint-loader": "1.9.0",
-    "eslint-plugin-flowtype": "2.35.0",
-    "eslint-plugin-import": "2.7.0",
-    "eslint-plugin-jsx-a11y": "5.1.1",
-    "eslint-plugin-react": "7.1.0",
-    "extract-text-webpack-plugin": "3.0.0",
-    "file-loader": "0.11.2",
-    "fs-extra": "3.0.1",
-    "html-webpack-plugin": "2.29.0",
-    "jest": "20.0.4",
-    "node-sass": "^4.5.3",
-    "object-assign": "4.1.1",
-    "postcss-flexbugs-fixes": "3.2.0",
-    "postcss-loader": "2.0.6",
-    "promise": "8.0.1",
-    "react": "^15.6.1",
-    "react-dev-utils": "^3.1.0",
-    "react-dom": "^15.6.1",
-    "react-error-overlay": "^1.0.10",
-    "sass-loader": "^6.0.6",
-    "style-loader": "0.18.2",
-    "sw-precache-webpack-plugin": "0.11.4",
-    "url-loader": "0.5.9",
-    "webpack": "3.5.1",
-    "webpack-dev-server": "2.7.1",
-    "webpack-manifest-plugin": "1.2.1",
-    "whatwg-fetch": "2.0.3"
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
   },
   "peerDependencies": {
-    "react": ">=0.14",
-    "react-dom": ">=0.14"
+    "react": ">=16"
   },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.js?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "react-oauth2",
+  "author": "maxifjaved",
+  "module": "dist/react-oauth2.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/react-oauth2.cjs.production.min.js",
+      "limit": "10 KB"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "dependencies": {
-    "moment": "^2.18.1",
-    "object-keys": "^1.0.11",
-    "prop-types": "^15.6.0",
-    "querystring": "^0.2.0",
-    "request": "^2.83.0",
-    "url": "^0.11.0"
+    {
+      "path": "dist/react-oauth2.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.1.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "husky": "^9.1.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "size-limit": "^11.1.6",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.8.1",
+    "typescript": "^3.9.10"
   }
 }
