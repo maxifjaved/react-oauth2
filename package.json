@@ -1,11 +1,10 @@
 {
-  "version": "2.0.0",
+  "version": "2.0.3",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
@@ -34,6 +33,14 @@
   },
   "name": "react-oauth2",
   "author": "maxifjaved",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxifjaved/react-oauth2.git"
+  },
+  "homepage": "https://github.com/maxifjaved/react-oauth2#readme",
+  "bugs": {
+    "url": "https://github.com/maxifjaved/react-oauth2/issues"
+  },
   "module": "dist/react-oauth2.esm.js",
   "size-limit": [
     {

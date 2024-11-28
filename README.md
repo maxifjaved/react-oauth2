@@ -169,6 +169,9 @@ const handleError = (error: OAuthError) => {
 };
 ```
 
+## Source Code
+The full source code for this package is available on [GitHub](https://github.com/maxifjaved/react-oauth2).
+
 ## Security Considerations
 
 - Never expose your client secrets in client-side code
@@ -199,7 +202,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## License
 
-MIT © [Your Name]
+MIT © maxifjaved
 
 ## Keywords
 
