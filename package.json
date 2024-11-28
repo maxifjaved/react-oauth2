@@ -1,10 +1,12 @@
 {
-  "version": "2.0.3",
+  "version": "2.0.8",
   "license": "MIT",
-  "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist/*.production.min.js",
+    "dist/*.esm.js",
+    "dist/*.d.ts",
+    "dist/index.js"
   ],
   "engines": {
     "node": ">=10"
@@ -41,27 +43,42 @@
   "bugs": {
     "url": "https://github.com/maxifjaved/react-oauth2/issues"
   },
+  "main": "dist/react-oauth2.cjs.production.min.js",
   "module": "dist/react-oauth2.esm.js",
+  "sideEffects": false,
   "size-limit": [
     {
       "path": "dist/react-oauth2.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "8 KB",
+      "using": [
+        "@size-limit/esbuild",
+        "@size-limit/esbuild-why"
+      ]
     },
     {
       "path": "dist/react-oauth2.esm.js",
-      "limit": "10 KB"
+      "limit": "8 KB",
+      "using": [
+        "@size-limit/esbuild",
+        "@size-limit/esbuild-why"
+      ]
     }
   ],
   "devDependencies": {
+    "@size-limit/esbuild": "^11.1.6",
+    "@size-limit/esbuild-why": "^11.1.6",
     "@size-limit/preset-small-lib": "^11.1.6",
+    "@size-limit/webpack": "^11.1.6",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "husky": "^9.1.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-visualizer": "^5.12.0",
     "size-limit": "^11.1.6",
     "tsdx": "^0.14.1",
     "tslib": "^2.8.1",
-    "typescript": "^3.9.10"
+    "typescript": "^5.7.2"
   }
 }
