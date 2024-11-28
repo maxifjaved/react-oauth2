@@ -38,13 +38,14 @@ pnpm add react-oauth2
 import { FacebookOauth2, GoogleOauth2 } from 'react-oauth2';
 
 function App() {
-  const handleSuccess = (response) => {
-    console.log('Logged in successfully:', response.profile);
-  };
-
-  const handleError = (error) => {
-    console.error('Login failed:', error);
-  };
+    const handleCallback = (error: Error, response: OAuthResponse) => {
+        if (error) {
+            // Handle error
+            return;
+        }
+        const {profile} = response;
+        // Handle successful login
+    };
 
   return (
     <div>
@@ -53,8 +54,7 @@ function App() {
         clientSecret="your-google-client-secret"
         redirectUri="http://localhost:3000/auth/google/callback"
         scope={['openid', 'email', 'profile']}
-        onSuccess={handleSuccess}
-        onError={handleError}
+        callback={handleCallback}
       >
         Continue with Google
       </GoogleOauth2>
@@ -64,8 +64,7 @@ function App() {
         clientSecret="your-facebook-client-secret"
         redirectUri="http://localhost:3000/auth/facebook/callback"
         scope="email,public_profile"
-        onSuccess={handleSuccess}
-        onError={handleError}
+        callback={handleCallback}
       >
         Continue with Facebook
       </FacebookOauth2>
@@ -99,17 +98,16 @@ function App() {
 
 ### GoogleButton Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| clientId | string | Yes | Your Google OAuth 2.0 client ID |
-| clientSecret | string | Yes | Your Google OAuth 2.0 client secret |
-| redirectUri | string | Yes | The URI to redirect to after authentication |
-| scope | string[] | No | Array of permission scopes |
-| onSuccess | (response: OAuthResponse) => void | Yes | Success callback |
-| onError | (error: Error) => void | Yes | Error callback |
-| className | string | No | Custom CSS class |
-| style | CSSProperties | No | Custom styles |
-| children | ReactNode | Yes | Button content |
+| Prop | Type                                            | Required | Description |
+|------|-------------------------------------------------|----------|-------------|
+| clientId | string                                          | Yes | Your Google OAuth 2.0 client ID |
+| clientSecret | string                                          | Yes | Your Google OAuth 2.0 client secret |
+| redirectUri | string                                          | Yes | The URI to redirect to after authentication |
+| scope | string[]                                        | No | Array of permission scopes |
+| callback | (error: Error, response: OAuthResponse) => void | Yes |  callback |
+| className | string                                          | No | Custom CSS class |
+| style | CSSProperties                                   | No | Custom styles |
+| children | ReactNode                                       | Yes | Button content |
 
 ### FacebookButton Props
 
@@ -119,8 +117,7 @@ function App() {
 | clientSecret | string | Yes | Your Facebook App Secret |
 | redirectUri | string | Yes | The URI to redirect to after authentication |
 | scope | string | No | Comma-separated permission scopes |
-| onSuccess | (response: OAuthResponse) => void | Yes | Success callback |
-| onError | (error: Error) => void | Yes | Error callback |
+|  callback | (error: Error, response: OAuthResponse) => void | Yes |  callback |
 | className | string | No | Custom CSS class |
 | style | CSSProperties | No | Custom styles |
 | children | ReactNode | Yes | Button content |
@@ -157,15 +154,15 @@ REACT_APP_FACEBOOK_CLIENT_SECRET=your-facebook-client-secret
 ### TypeScript Usage
 
 ```typescript
-import type { OAuthResponse, OAuthError } from 'react-oauth2';
+import type {OAuthResponse, OAuthError} from 'react-oauth2';
 
-const handleSuccess = (response: OAuthResponse) => {
-  const { profile } = response;
-  // Handle successful login
-};
-
-const handleError = (error: OAuthError) => {
-  // Handle error
+const handleCallback = (error: Error, response: OAuthResponse) => {
+    if (error) {
+        // Handle error
+        return;
+    }
+    const {profile} = response;
+    // Handle successful login
 };
 ```
 
