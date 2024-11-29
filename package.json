@@ -1,5 +1,5 @@
 {
-  "version": "2.0.8",
+  "version": "2.0.9",
   "license": "MIT",
   "typings": "dist/index.d.ts",
   "files": [
@@ -80,5 +80,27 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.8.1",
     "typescript": "^5.7.2"
-  }
+  },
+  "keywords": [
+    "react",
+    "oauth",
+    "oauth2",
+    "social-login",
+    "google-login",
+    "facebook-login",
+    "react-component",
+    "typescript",
+    "authentication",
+    "social-authentication",
+    "google-oauth",
+    "facebook-oauth",
+    "react18",
+    "social-media-login",
+    "oauth2-client",
+    "react-oauth",
+    "social-signin",
+    "google-signin",
+    "facebook-signin",
+    "react-social-login"
+  ]
 }
