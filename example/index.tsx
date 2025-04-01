@@ -9,8 +9,7 @@ const App = () => {
       console.error('Google login error:', error);
       return;
     }
-    console.log('Google login success:', result);
-    debugger;
+    console.log('Google login success:', result.profile);
   };
 
   const handleFacebookCallback = (error: Error | null, result: any) => {
@@ -18,8 +17,7 @@ const App = () => {
       console.error('Facebook login error:', error);
       return;
     }
-    console.log('Facebook login success:', result);
-    debugger;
+    console.log('Facebook login success:', result.profile);
   };
 
   return (
