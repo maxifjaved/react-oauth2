@@ -40,6 +40,14 @@ export function oauth2(config: OAuthConfig): Promise<{ url: string; config: OAut
         response_type: 'code'
     });
 
+    // Add provider-specific parameters
+    if (config.authorizationUrl.includes('google')) {
+        params.append('access_type', 'offline');
+        params.append('prompt', 'select_account consent');
+    } else if (config.authorizationUrl.includes('facebook')) {
+        params.append('auth_type', 'rerequest');
+    }
+
     return Promise.resolve({
         url: `${config.authorizationUrl}?${params.toString()}`,
         config
@@ -91,9 +99,6 @@ export function pollPopup({
     requestToken?: Record<string, string>;
 }): Promise<OAuthResponse> {
     return new Promise((resolve, reject) => {
-        const redirectUrl = new URL(config.redirectUri);
-        const redirectUriPath = redirectUrl.host + redirectUrl.pathname;
-
         if (requestToken) {
             const params = new URLSearchParams(requestToken);
             popupWindow.location.href = `${config.authorizationUrl}?${params.toString()}`;
@@ -107,9 +112,11 @@ export function pollPopup({
             }
 
             try {
-                const popupUrlPath = popupWindow.location.host + popupWindow.location.pathname;
+                // Check if we're on the redirect URL
+                const currentUrl = popupWindow.location.href;
+                const isRedirectUrl = currentUrl.startsWith(config.redirectUri);
 
-                if (popupUrlPath === redirectUriPath) {
+                if (isRedirectUrl) {
                     const searchParams = new URLSearchParams(
                         popupWindow.location.search.substring(1).replace(/\/$/, '')
                     );

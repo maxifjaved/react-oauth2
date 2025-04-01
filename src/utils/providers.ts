@@ -20,6 +20,22 @@ interface ProfileResponse {
     profile: Profile;
 }
 
+async function handleCallback(
+    { window, interval, profile }: ProfileResponse
+): Promise<{ profile: Profile }> {
+    // Close the popup window
+    if (window && !window.closed) {
+        window.close();
+    }
+    
+    // Clear the polling interval
+    if (interval) {
+        clearInterval(interval);
+    }
+
+    return { profile };
+}
+
 export async function facebookLogin(facebook: OAuthConfig) {
     try {
         const popup = await oauth2(facebook)
@@ -27,8 +43,7 @@ export async function facebookLogin(facebook: OAuthConfig) {
             .then(pollPopup);
 
         const profile = await exchangeFacebookCodeForToken(popup);
-        await signIn(profile);
-        return closePopup(profile);
+        return handleCallback(profile);
     } catch (error) {
         console.error('Facebook login error:', error);
         throw error;
@@ -85,8 +100,7 @@ export async function googleLogin(google: OAuthConfig) {
             .then(pollPopup);
 
         const profile = await exchangeGoogleCodeForToken(popup);
-        await signIn(profile);
-        return closePopup(profile);
+        return handleCallback(profile);
     } catch (error) {
         console.error('Google login error:', error);
         throw error;
@@ -135,18 +149,4 @@ async function exchangeGoogleCodeForToken(
     }
 
     return { window, interval, profile };
-}
-
-async function signIn(profile: ProfileResponse) {
-    return profile;
-}
-
-async function closePopup({
-                              window,
-                              interval,
-                              profile
-                          }: ProfileResponse): Promise<{ profile: Profile }> {
-    clearInterval(interval);
-    window.close();
-    return { profile };
 }

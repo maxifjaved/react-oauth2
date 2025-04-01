@@ -1,5 +1,5 @@
 {
-  "version": "2.0.9",
+  "version": "2.0.10",
   "license": "MIT",
   "typings": "dist/index.d.ts",
   "files": [
@@ -17,7 +17,9 @@
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "example": "vite example",
+    "example:build": "vite build example"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -71,6 +73,7 @@
     "@size-limit/webpack": "^11.1.6",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.2.1",
     "husky": "^9.1.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -79,7 +82,8 @@
     "size-limit": "^11.1.6",
     "tsdx": "^0.14.1",
     "tslib": "^2.8.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vite": "^5.1.4"
   },
   "keywords": [
     "react",
